@@ -1,4 +1,4 @@
-package com.yunkuo;
+package com.yunkuo.cms.controller;
 
 import com.yunkuo.cms.model.User;
 import org.springframework.stereotype.Controller;
@@ -41,4 +41,5 @@ public class DefaultController {
         System.out.println(a);
         return new ModelAndView("user","userList",a);
     }
+
 }

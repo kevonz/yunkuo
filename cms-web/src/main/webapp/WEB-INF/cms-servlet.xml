@@ -14,7 +14,7 @@
     <!--注解说明 -->
     <context:annotation-config />
     <!-- 把标记了@Controller注解的类转换为bean -->
-    <context:component-scan base-package="com.yunkuo"/>
+    <context:component-scan base-package="com.yunkuo.cms"/>
     <!-- 解决 ajax 直接返回中文出现乱码问题，必须放在annotation-driven 之前 -->
     <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
         <property name="supportedMediaTypes">
@@ -60,4 +60,28 @@
         <property name="exposeSpringMacroHelpers" value="true" />
     </bean>
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="i18n/messages" />
+
+    <!-- 引入jdbc配置文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    <!--创建jdbc数据源 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driver}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+    </bean>
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- 创建SqlSessionFactory，同时指定数据源 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- 可通过注解控制事务 -->
+    <tx:annotation-driven />
+    <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.yunkuo.cms.mapper" />
+    </bean>
 </beans>
