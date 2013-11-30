@@ -1,0 +1,1 @@
+The decorated page is at right.右侧是被装饰页。<#--name=${name}-->
