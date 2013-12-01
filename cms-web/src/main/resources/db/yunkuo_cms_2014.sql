@@ -10,10 +10,25 @@ Target Server Type    : MYSQL
 Target Server Version : 50612
 File Encoding         : 65001
 
-Date: 2013-12-01 00:55:02
+Date: 2013-12-01 23:40:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `c_article`
+-- ----------------------------
+DROP TABLE IF EXISTS `c_article`;
+CREATE TABLE `c_article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_article
+-- ----------------------------
+INSERT INTO `c_article` VALUES ('1', 'aaa');
 
 -- ----------------------------
 -- Table structure for `c_category`

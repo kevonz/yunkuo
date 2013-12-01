@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * To change this template use File | Settings | File Templates.
  */
 @Repository(value = "categoryMapper")
-public interface CategoryMapper {
+public interface CategoryMapper extends SqlMapper {
     @Select(value = "${sql}")
     @Results(value = { @Result(id = true, property = "id", column = "id"),
             @Result(property = "name", column = "name") })
