@@ -308,9 +308,34 @@
                 <maven.compiler.target>1.6</maven.compiler.target>
                 <maven.compiler.compilerVersion>1.6</maven.compiler.compilerVersion>
             </properties>
+			<repositories>
+            		<repository>
+            			<id>nexus</id>
+            			<name>local private nexus</name>
+            			<url>http://maven.oschina.net/content/groups/public/</url>
+            			<releases>
+            				<enabled>true</enabled>
+            			</releases>
+            			<snapshots>
+            				<enabled>false</enabled>
+            			</snapshots>
+            		</repository>
+            	</repositories>
+            	<pluginRepositories>
+            		<pluginRepository>
+            			<id>nexus</id>
+            			<name>local private nexus</name>
+            			<url>http://maven.oschina.net/content/groups/public/</url>
+            			<releases>
+            				<enabled>true</enabled>
+            			</releases>
+            			<snapshots>
+            				<enabled>false</enabled>
+            			</snapshots>
+            		</pluginRepository>
+            	</pluginRepositories>
         </profile>
     </profiles>
-
 
     <distributionManagement>
         <repository>
