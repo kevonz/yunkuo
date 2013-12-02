@@ -1,5 +1,6 @@
 package com.yunkuo;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +21,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @ContextConfiguration("file:src/main/webapp/WEB-INF/cms-servlet.xml")
 public class AppTests {
     private MockMvc mockMvc;
-
+    private final static Logger logger = Logger.getLogger(AppTests.class);
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     protected WebApplicationContext wac;
@@ -32,6 +33,7 @@ public class AppTests {
 
     @Test
     public void simple() throws Exception {
+        logger.info("#########################################");
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("hello"));

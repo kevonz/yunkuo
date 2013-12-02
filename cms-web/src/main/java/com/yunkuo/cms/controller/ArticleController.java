@@ -27,8 +27,8 @@ public class ArticleController {
 
     @RequestMapping(method = RequestMethod.GET,value = "list1")
     public String list(HttpServletRequest request, HttpServletResponse response, Model model) {
-        model.addAttribute(articleService.getList());
-        return "article";
+        model.addAttribute(articleService.getList());//articleList
+        return "article/list1";
     }
     @RequestMapping(method = RequestMethod.GET,value = "list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response) {
