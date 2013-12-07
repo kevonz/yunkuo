@@ -13,7 +13,7 @@
 -->
 
     <table border="1">
-    <#list articleList as article>
+    <#list articleDOList as article>
         <tr>
             <td>${article.id}</td>
             <td>${article.title}</td>

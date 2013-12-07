@@ -1,7 +1,8 @@
 package com.yunkuo.cms.service.impl;
 
-import com.yunkuo.cms.mapper.CategoryMapper;
-import com.yunkuo.cms.model.Category;
+//import com.yunkuo.cms.mapper.CategoryMapper;
+//import com.yunkuo.cms.model.Category;
+import com.yunkuo.cms.model.CategoryDO;
 import com.yunkuo.cms.service.CategoryService;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +21,13 @@ import java.util.List;
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
 
-    @Resource(name = "categoryMapper")
-    private CategoryMapper categoryMapper;
+    //@Resource(name = "categoryMapper")
+    //private CategoryMapper categoryMapper;
 
-    @Override
-    public List<Category> find() {
-        String sql = "select * from c_category";
+/*    @Override
+    public List<CategoryDO> find() {
+       String sql = "select * from c_category";
         return this.categoryMapper.operateReturnBeans(sql);
-    }
+        return null;
+    }*/
 }

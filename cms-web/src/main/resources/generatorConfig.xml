@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+    <!-- 设置mysql驱动路径 -->
+    <classPathEntry location="C:\Java\jdk1.7.0_11\lib\mysql-connector-java-5.1.16.jar" />
+    <!-- 此处指定生成针对MyBatis3的DAO -->
+    <context id="context1"  targetRuntime="MyBatis3">
+        <!-- jdbc连接信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/yunkuo_cms_2014" userId="root" password="#Bugsfor$" />
+        <!-- 生成vo对象 -->
+        <javaModelGenerator targetPackage="com.yunkuo.cms.model" targetProject="MAVEN">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成用于查询的Example对象 -->
+        <sqlMapGenerator targetPackage="sqlmapper" targetProject="MAVEN" />
+        <!-- 生成DAO的类文件以及配置文件 -->
+        <javaClientGenerator targetPackage="com.yunkuo.cms.dao" targetProject="MAVEN" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
+        <table tableName="yk_user" domainObjectName="userDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table tableName="c_article" domainObjectName="articleDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+        <table tableName="c_category" domainObjectName="categoryDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+    </context>
+</generatorConfiguration>

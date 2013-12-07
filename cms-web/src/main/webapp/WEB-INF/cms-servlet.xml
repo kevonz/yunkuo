@@ -85,6 +85,13 @@
             </list>
         </property>
     </bean>
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+    <bean id="baseDao" class="com.yunkuo.cms.common.dal.BaseDaoImpl" abstract="true" init-method="initialize">
+        <property name="sqlSessionTemplate" ref="sqlSession"/>
+    </bean>
+    <bean id="articleDao" class="com.yunkuo.cms.dao.impl.ArticleDaoImpl" parent="baseDao"/>
     <!-- 可通过注解控制事务 -->
     <tx:annotation-driven />
     <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper,所有的mapper都继承SqlMapper接口的接口 -->

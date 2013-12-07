@@ -6,6 +6,6 @@
         <package name="com.yunkuo.cms.model"/>
     </typeAliases>
 <!--    <mappers>
-        <mapper resource="sqlmapper/ArticleMapper.xml" />
+        <mapper resource="sqlmapper/ArticleMapper.xml.txt" />
     </mappers>-->
 </configuration>

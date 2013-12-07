@@ -1,7 +1,7 @@
 package com.yunkuo.cms.service.impl;
 
 import com.yunkuo.cms.dao.ArticleDao;
-import com.yunkuo.cms.model.Article;
+import com.yunkuo.cms.model.ArticleDO;
 import com.yunkuo.cms.service.ArticleService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -17,16 +17,18 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Service
-public class ArticleServiceImpl<T extends Article> implements ArticleService {
+public class ArticleServiceImpl<T extends ArticleDO> implements ArticleService {
     @Inject
     private ArticleDao<T> dao;
     @Override
     public List getList() throws DataAccessException {
-        return dao.getList();
+        return dao.queryForListAll();
     }
 
     @Override
-    public T getArticle(Integer id) throws DataAccessException {
-        return dao.getArticle(id);
+    public ArticleDO getArticle(Integer id) throws DataAccessException {
+        ArticleDO articleDO=new ArticleDO();
+        articleDO.setId(id);
+        return dao.queryObject(articleDO);
     }
 }

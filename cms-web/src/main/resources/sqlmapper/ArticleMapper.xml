@@ -1,64 +1,137 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunkuo.cms.mapper.ArticleMapper">
-    <resultMap id="articleResultMap" type="com.yunkuo.cms.model.Article">
-        <id property="id" column="id" />
-        <result property="title" column="title"/>
-    </resultMap>
-    <!-- 取得用户列表  -->
-    <select id="getArticle" resultType="Article" parameterType="Article">
-        select
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ArticleDO" >
+  <resultMap id="BaseResultMap" type="com.yunkuo.cms.model.ArticleDO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="queryParam" >
+    <where >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="categoryId != null" >
+         AND category_id = #{categoryId,jdbcType=INTEGER}
+      </if>
+      <if test="title != null" >
+         AND title = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null" >
+         AND user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+         AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, category_id, title, user_id, create_time
+  </sql>
+  <select id="queryAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_article
+  </select>
+  <select id="query" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_article
+    <if test="_parameter != null" >
+      <include refid="queryParam" />
+    </if>
+  </select>
+  <select id="count" parameterType="com.yunkuo.cms.model.ArticleDO" resultType="java.lang.Integer" >
+    select count(*) from c_article
+    <if test="_parameter != null" >
+      <include refid="queryParam" />
+    </if>
+  </select>
+  <select id="queryByPK" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPK" parameterType="java.lang.Integer" >
+    delete from c_article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="delete" parameterType="com.yunkuo.cms.model.ArticleDO" >
+    delete from c_article
+    <if test="_parameter != null" >
+      <include refid="queryParam" />
+    </if>
+  </delete>
+  <insert id="add" parameterType="com.yunkuo.cms.model.ArticleDO" >
+    insert into c_article (id, category_id, title, 
+      user_id, create_time)
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunkuo.cms.model.ArticleDO" >
+    insert into c_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         id,
-        title
-        From c_article
-        <where>
-            <if test="id!=null">
-                and id=#{id}
-            </if>
-        </where>
-    </select>
-
-    <select id="getAllArticle" resultType="list" resultMap="articleResultMap">
-        <![CDATA[
-            select * from c_article
-        ]]>
-    </select>
-    <!-- 新增用户 -->
-    <!--<insert id="insertUser" parameterType="User">
-        insert into user(id,account,password) value(#{id},#{account},#{password})
-        <selectKey keyProperty="id" resultType="Long" >
-            select last_insert_id() as id
-        </selectKey>
-    </insert>-->
-    <!-- 修改用户 -->
-   <!-- <update id="updateUser" parameterType="User">
-        update user
-        <set>
-            <if test="account != null">account=#{account},</if>
-            <if test="password != null">password=#{password},</if>
-        </set>
-        where id=#{id}
-    </update>-->
-    <!-- 删除用户 -->
-    <!--<delete id="deleteUser" parameterType="Long">
-   		delete from  user where id=#{id}
-   </delete>-->
-
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.yunkuo.cms.model.ArticleDO" >
+    update c_article
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPK" parameterType="com.yunkuo.cms.model.ArticleDO" >
+    update c_article
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

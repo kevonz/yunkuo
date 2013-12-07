@@ -1,39 +1,66 @@
 package com.yunkuo.cms.dao.impl;
 
+import com.yunkuo.cms.common.dal.BaseDaoImpl;
 import com.yunkuo.cms.dao.ArticleDao;
-import com.yunkuo.cms.model.Article;
+import com.yunkuo.cms.model.ArticleDO;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import javax.inject.Inject;
-
 import java.util.List;
 
+
+
 /**
- * Created with IntelliJ IDEA.
- * User: Jin
- * Date: 13-12-1
- * Time: 下午10:57
- * To change this template use File | Settings | File Templates.
+ * Created by kevon on 13-12-7.
  */
-@Repository
-public class ArticleDaoImpl<T extends Article> implements ArticleDao<T> {
-    @Inject
-    private com.yunkuo.cms.mapper.ArticleMapper mapper;
+@Repository("articleDao")
+public class ArticleDaoImpl<T extends ArticleDO> extends BaseDaoImpl<ArticleDO> implements ArticleDao<T> {
+/*
+    @Override
+    public int deleteByPK(Integer id) {
+        return 0;
+    }
 
     @Override
-    public List<T> getList() throws DataAccessException {
-        return (List<T>) mapper.getAllArticle();
+    public int add(ArticleDO record) {
+        return 0;
+    }
+
+    @Override
+    public int insertSelective(ArticleDO record) {
+        return 0;
+    }
+
+    @Override
+    public ArticleDO queryByPK(Integer id) {
+        return null;
+    }
+
+    @Override
+    public int update(ArticleDO record) {
+        return 0;
+    }
+
+    @Override
+    public int updateByPK(ArticleDO record) {
+        return 0;
+    }*/
+
+   /* @Override
+    public List<ArticleDO> getList() {
+        //return (List<T>) mapper.getAllArticle();
+        return getSqlSession().selectList("ArticleDO.queryAll");
     }
 
     @Override
     public T getArticle(Integer id) throws DataAccessException {
-        T entity = null;
+        *//*T entity = null;
         try {
             entity = (T) mapper.getArticleById(String.valueOf(id));
         } catch (DataAccessException e) {
             throw e;
         }
-        return entity;
-    }
+        return entity;*//*
+        return null;
+    }*/
 }

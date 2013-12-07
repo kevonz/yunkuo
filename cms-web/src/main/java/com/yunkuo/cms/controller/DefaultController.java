@@ -1,6 +1,5 @@
 package com.yunkuo.cms.controller;
 
-import com.yunkuo.cms.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +25,7 @@ public class DefaultController {
 		model.addAttribute("message", "Hello yunkuo!");
 		return "hello";
 	}
-
+/*
     @RequestMapping("/user")
     public ModelAndView  user(HttpServletRequest request, HttpServletResponse response) {
         User u1=new User();
@@ -40,6 +39,6 @@ public class DefaultController {
         a.add(u2);
         System.out.println(a);
         return new ModelAndView("user","userList",a);
-    }
+    }*/
 
 }

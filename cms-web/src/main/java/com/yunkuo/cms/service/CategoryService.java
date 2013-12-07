@@ -1,6 +1,6 @@
 package com.yunkuo.cms.service;
 
-import com.yunkuo.cms.model.Category;
+//import com.yunkuo.cms.model.Category;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface CategoryService {
 
-    List<Category> find();
+//    List<Category> find();
 }

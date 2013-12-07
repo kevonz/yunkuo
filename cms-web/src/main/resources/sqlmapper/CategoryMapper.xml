@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="categoryDO" >
+  <resultMap id="BaseResultMap" type="com.yunkuo.cms.model.CategoryDO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="queryParam" >
+    <where >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="name != null" >
+         AND name = #{name,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name
+  </sql>
+  <select id="queryAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_category
+  </select>
+  <select id="query" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_category
+    <if test="_parameter != null" >
+      <include refid="queryParam" />
+    </if>
+  </select>
+  <select id="count" parameterType="com.yunkuo.cms.model.CategoryDO" resultType="java.lang.Integer" >
+    select count(*) from c_category
+    <if test="_parameter != null" >
+      <include refid="queryParam" />
+    </if>
+  </select>
+  <select id="queryByPK" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_category
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPK" parameterType="java.lang.Integer" >
+    delete from c_category
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="delete" parameterType="com.yunkuo.cms.model.CategoryDO" >
+    delete from c_category
+    <if test="_parameter != null" >
+      <include refid="queryParam" />
+    </if>
+  </delete>
+  <insert id="add" parameterType="com.yunkuo.cms.model.CategoryDO" >
+    insert into c_category (id, name)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunkuo.cms.model.CategoryDO" >
+    insert into c_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.yunkuo.cms.model.CategoryDO" >
+    update c_category
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPK" parameterType="com.yunkuo.cms.model.CategoryDO" >
+    update c_category
+    set name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
