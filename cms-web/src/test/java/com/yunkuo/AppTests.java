@@ -38,4 +38,11 @@ public class AppTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("hello"));
     }
+
+    @Test
+    public void t2() throws Exception{
+        logger.info("00000000000000000000000000");
+        logger.info(mockMvc.perform(get("/article/list")).toString());
+        logger.info(wac.getServletContext().getContextPath());
+    }
 }

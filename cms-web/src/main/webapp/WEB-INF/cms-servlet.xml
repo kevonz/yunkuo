@@ -92,11 +92,12 @@
         <property name="sqlSessionTemplate" ref="sqlSession"/>
     </bean>
     <bean id="articleDao" class="com.yunkuo.cms.dao.impl.ArticleDaoImpl" parent="baseDao"/>
+    <bean id="categoryDao" class="com.yunkuo.cms.dao.impl.CategoryDaoImpl" parent="baseDao"/>
     <!-- 可通过注解控制事务 -->
     <tx:annotation-driven />
     <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper,所有的mapper都继承SqlMapper接口的接口 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.yunkuo.cms.mapper" />
         <property name="markerInterface" value="com.yunkuo.cms.mapper.SqlMapper"/>
-    </bean>
+    </bean>-->
 </beans>

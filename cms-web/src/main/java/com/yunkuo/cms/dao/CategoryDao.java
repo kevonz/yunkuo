@@ -1,9 +1,10 @@
 package com.yunkuo.cms.dao;
 
+import com.yunkuo.cms.common.dal.BaseDao;
 import com.yunkuo.cms.model.CategoryDO;
 
-public interface CategoryDao {
-    int deleteByPK(Integer id);
+public interface CategoryDao<T> extends BaseDao<CategoryDO> {
+/*    int deleteByPK(Integer id);
 
     int add(CategoryDO record);
 
@@ -13,5 +14,5 @@ public interface CategoryDao {
 
     int update(CategoryDO record);
 
-    int updateByPK(CategoryDO record);
+    int updateByPK(CategoryDO record);*/
 }

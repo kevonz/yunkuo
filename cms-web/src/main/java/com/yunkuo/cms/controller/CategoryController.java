@@ -2,6 +2,7 @@ package com.yunkuo.cms.controller;
 
 import com.yunkuo.cms.model.CategoryDO;
 import com.yunkuo.cms.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,21 +26,21 @@ import java.util.Map;
 @RequestMapping("/category")
 public class CategoryController {
 
-/*    @Resource(name = "categoryService")
+    @Autowired
     private CategoryService categoryService;
 
     @RequestMapping(method = RequestMethod.GET,value = "list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response) {
-        List<CategoryDO> result = this.categoryService.find();
+        List<CategoryDO> result = this.categoryService.getList();
         return new ModelAndView("category","categoryList", result);
     }
 
     @RequestMapping(method = RequestMethod.GET,value = "list1")
     public ModelAndView list1(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<CategoryDO> result = this.categoryService.find();
+        List<CategoryDO> result = this.categoryService.getList();
         map.put("categoryList", result);
         return new ModelAndView("category/list", map);
-    }*/
+    }
 
 }
