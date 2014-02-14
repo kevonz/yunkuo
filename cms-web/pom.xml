@@ -51,11 +51,11 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>com.springsource.javax.inject</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+		<dependency>
+		  <groupId>javax.inject</groupId>
+		  <artifactId>javax.inject</artifactId>
+		  <version>1</version>
+		</dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -158,11 +158,11 @@
                 <artifactId>maven-jetty-plugin</artifactId>
                 <configuration>
                     <reload>manual</reload>
-                    <connectors>
+                    <!--connectors>
                         <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
                             <port>9000</port>
                         </connector>
-                    </connectors>
+                    </connectors-->
                     <webAppConfig>
                         <contextPath>/</contextPath>
                     </webAppConfig>
@@ -193,4 +193,31 @@
             </plugin>
         </plugins>
     </build>
+	
+	<repositories>  
+      <repository>  
+          <id>nexus</id>  
+          <name>local private nexus</name>  
+          <url>http://192.168.1.59:8081/nexus/content/groups/public</url>  
+          <releases>  
+              <enabled>true</enabled>  
+          </releases>  
+          <snapshots>  
+              <enabled>false</enabled>  
+          </snapshots>  
+      </repository>  
+	</repositories>  
+	<pluginRepositories>  
+	  <pluginRepository>  
+		  <id>nexus</id>  
+		  <name>local private nexus</name>  
+		  <url>http://192.168.1.59:8081/nexus/content/groups/public</url>  
+		  <releases>  
+			  <enabled>true</enabled>  
+		  </releases>  
+		  <snapshots>  
+			  <enabled>false</enabled>  
+		  </snapshots>  
+	  </pluginRepository>  
+	</pluginRepositories>
 </project>
